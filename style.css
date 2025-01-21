@@ -1,0 +1,1048 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+:root {
+    --bg-color: #080808;
+    --second-bg-color: #00004D;
+    --text-color: white;
+    --main-color: #79f6fc;
+    --angle: 0deg;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    font-size: 70%;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base styles for animated items */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Styles for when the items are in view */
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image slide-in animation */
+.image-slide {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.image-slide.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Text fade-in animation */
+.text-fade {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+.text-fade.animate {
+    opacity: 1;
+}
+
+body {
+    background: #080808;
+    color: white;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 12%;
+    background: transparent;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s ease-in-out;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;  /* Aligns the image and text properly */
+}
+
+.logo-img {
+    width: 70px;  /* Smaller size for the circular logo */
+    height: 70px;
+    border-radius: 50%;  /* Makes the logo circular */
+    margin-right: 1rem;  /* Adds space between the logo and text */
+    transition: box-shadow 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.logo-img:hover {
+    box-shadow: 0 0 10px #79F6FC;  /* Changes shadow color on hover */
+}
+
+
+.logo-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}
+
+.akt-text {
+    color: #79f6fc;
+    text-shadow: 0 0 15px #79f6fc;  /* Glowing effect on AKT */
+}
+
+.navbar {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.navbar a {
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #79f6fc;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #79f6fc;
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    width: 100%;
+}
+
+#menu-icon {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* When toggling to close the menu */
+#menu-icon.bx-x {
+    color: #79f6fc; /* Change to a different color if needed */
+}
+
+/* On mobile screens, show the menu icon and hide the navbar */
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;  /* Show the menu icon on mobile */
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start hidden off-screen */
+        width: 60%;
+        height: 100vh; /* Full height for side menu */
+        background: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    /* Show navbar when active */
+    .navbar.active {
+        right: 0; /* Slide in from the right */
+    }
+
+    /* Style navbar links */
+    .navbar a {
+        display: block;
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        width: 100%;
+    }
+
+    /* Improve visibility of links when hovered */
+    .navbar a:hover {
+        background: #444;
+    }
+}
+
+section {
+    min-height: 100vh;
+    padding: 10rem 12%;
+}
+
+/* Base styles for buttons */
+.btn-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 12px;
+    background: conic-gradient(
+        from var(--angle),
+        #ff4545,
+        #00ff99,
+        #006aff,
+        #ff0095,
+        #ff4545
+    );
+    animation: rotate 3s linear infinite;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.btn-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    border-radius: 16px;
+    z-index: -2;
+    filter: blur(12px);
+    opacity: 0.8;
+    background: inherit;
+}
+
+.btn {
+    padding: 1em 2em;
+    width: 300px;
+    background: #1c1f2b;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    z-index: 2;
+    position: relative;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+.home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centering the text vertically */
+    gap: 5rem;
+    flex-direction: row;
+    padding: 10rem 12%;
+}
+
+.home .btn-group {
+    display: flex;
+    justify-content: flex-start; /* Aligns button to the left */
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.home-content {
+    max-width: 60%; /* Limit the width of the text */
+    text-align: left;
+}
+
+.right-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-logo {
+    width: 500px; /* Increased logo size */
+    height: 500px; /* Increased logo size */
+    border-radius: 50%;
+    box-shadow: 0 0 15px #79F6FC;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.circle-logo:hover {
+    box-shadow: 0 0 15px #79F6FC;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+.right-logo .circle-logo {
+    width: 500px; /* Adjusted size of the logo */
+    height: 500px; /* Keep it proportional */
+    border-radius: 50%; /* Circular logo */
+    box-shadow: 0 0 15px #79F6FC ; /* Glow effect */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.right-logo .circle-logo:hover {
+    box-shadow: 0 0 40px #79F6FC; /* Glow effect on hover */
+}
+
+.home-content h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+}
+
+.home-content h1 span {
+    color: #79f6fc;
+    text-shadow: 0 0 15px #79f6fc;
+}
+
+.home-content h3 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    color: #79f6fc;
+}
+
+.home-content p {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Base styles for buttons */
+.btn-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 12px;
+    background: conic-gradient(
+        from var(--angle),
+        #ff4545,
+        #00ff99,
+        #006aff,
+        #ff0095,
+        #ff4545
+    );
+    animation: rotate 3s linear infinite;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.btn-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    border-radius: 16px;
+    z-index: -2;
+    filter: blur(12px);
+    opacity: 0.8;
+    background: inherit;
+}
+
+.btn {
+    padding: 0.8em 1.5em; /* Decrease padding */
+    width: 250px; /* Decrease width */
+    background: black; /* Button background */
+    color: white; /* Button text color */
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px; /* Adjust font size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none; /* No default border */
+    z-index: 2;
+    position: relative;
+}
+
+.btn i {
+    font-size: 3.5rem; /* Adjust icon size */
+    color: white; /* Icon color */
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+
+.right-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-logo {
+    width: 120px; /* Logo size */
+    height: 120px; /* Logo size */
+    border-radius: 50%;
+    box-shadow: 0 0 20px #79F6FC; /* Updated default shadow color and size */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.circle-logo:hover {
+    box-shadow: 0 0 40px #79F6FC; /* Updated hover shadow color and increased size */
+}
+
+
+.text-animation {
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+}
+
+.text-animation span {
+    position: relative;
+}
+
+.text-animation span::before {
+    content: "Web Developer";
+    color: #79f6fc;
+    animation: words 20s infinite;
+}
+
+@keyframes words {
+    0%, 20% { 
+        content: "Frontend Designer";
+    }
+    21%, 40% {
+        content: "Web Designer";
+    }
+    41%, 60% {
+        content: "The Ultimate Sigma AI Bot";
+    }
+    61%, 80% {
+        content: "Web Developer";
+    }
+    81%, 100% {
+        content: "Software Tester";
+    }
+}
+
+@keyframes cursor {
+    to {
+        border-left: 2px solid #79f6fc;
+    }
+}
+
+@keyframes typing {
+    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% {
+        width: 0;
+    }
+    5%, 20%, 25%, 40%, 45%, 60%, 80%, 85% {
+        width: calc(100% + 8px);
+    }
+}
+
+.about {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;  /* Adds space between the logo and the text */
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 5rem 12%;
+}
+
+.about-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.about-logo-img {
+    width: 500px;  /* Increased size of the logo to 500px */
+    height: 500px;  /* Keep height the same as width to maintain a circular shape */
+    border-radius: 50%;  /* Circular logo */
+    box-shadow: 0 0 20px #79F6FC; /* Updated default shadow color and size */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.about-logo-img:hover {
+    box-shadow: 0 0 40px #79F6FC; /* Updated hover shadow color and increased size */
+}
+
+.about-content {
+    max-width: 60%; 
+    text-align: left; /* Limits the width of the text */
+}
+
+.heading {
+    font-size: 6rem; /* Increased size for "About Me" */
+    color: white;
+    margin-bottom: 2rem; /* Adjust spacing if needed */
+    text-align: left; /* Ensure alignment remains consistent */
+}
+
+.heading span {
+    color: #79F6FC; /* Glowing text color */
+    text-shadow: 0 0 15px #79F6FC; /* Glowing effect */
+}
+
+.sub-heading {
+    font-size: 4rem;
+    color: #79f6fc;
+    margin-top: 1rem;
+}
+
+.about-content p {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+}
+
+.features {
+    background: var(--bg-color);
+    color: black;
+}
+
+.features h2 {
+    margin-bottom: 5rem;
+    color: var(--text-color);
+    text-align: center; /* Centers the header */
+    font-size: 6rem; /* Optional: Adjust the font size */
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.feature-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color);
+    height: 600px;
+    border-radius: 3rem;
+    border: 5px solid transparent;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+
+.feature-box:hover {
+    background: var(--second-bg-color);
+    color: var(--main-color);
+    border: 5px solid var(--main-color);
+    transform: scale(1.03);
+}
+
+.feature-box .feature-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 5rem;
+}
+
+.feature-info h4{
+    font-size: 3rem;
+    margin: 2rem 0;
+    font-weight: 800;
+}
+
+.feature-info p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+.feature-info i {
+    font-size: 8rem;
+}
+
+.samples .heading {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20;
+}
+
+.samples {
+    background: url('BACKGROUND.png') center/cover no-repeat;
+}
+
+.projects {
+    background: url(BACKGROUND.png)center no-repeat;
+    background-size: cover;
+}
+
+.projects-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+}
+
+.project-card {
+    width: 70%; /* Reduced width to make cards smaller */
+    height: 0;
+    padding-bottom: 70%; /* This ensures a square aspect ratio for the card */
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px #79F6FC; /* Updated shadow color and increased brightness */
+    border: 3px solid var(--main-color); /* Border remains unchanged */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for shadow changes */
+}
+
+.project-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the square without distortion */
+    border-radius: 10px;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 15px 0 10px;
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.project-card .btn {
+    display: inline-block;
+    background: red;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 10px 30px #79F6FC; /* Enhanced shadow on hover */
+}
+
+.project-card .btn:hover {
+    background: 79f6fc;
+    box-shadow: 0px 5px 15px rgba(255, 69, 0, 0.6);
+}
+
+.projects-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .projects-box {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-box {
+        grid-template-columns: 1fr; /* 1 column on very small screens */
+    }
+}
+
+.footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.social {
+    margin-bottom: 20px;
+}
+
+/* Footer Navigation Links */
+.footer {
+    background-color: var(--second-bg-color); /* Changed to use the CSS variable */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.social {
+    margin-bottom: 20px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.footer-list li {
+    margin: 0;
+}
+
+.footer-list a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer-list a:hover {
+    color: blanchedalmond;
+}
+
+.copyright {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #bbb;
+}
+
+/* Base styles for the navbar */
+.navbar {
+    display: flex; /* Show the navbar by default for larger screens */
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+/* Blur effect for the navbar */
+.navbar.blur {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background */
+}
+
+/* Navbar links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 15px;
+}
+
+.navbar a:hover {
+    background: #444;
+}
+
+/* Mobile menu icon */
+#menu-icon {
+    display: none; /* Hide menu icon by default */
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Show the menu icon on mobile screens */
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;  /* Show the menu icon on mobile */
+    }
+
+    .navbar {
+        display: none; /* Hide the navbar by default on mobile */
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden off-screen */
+        width: 60%;
+        height: 100vh;
+        background: #333;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+    }
+
+    .navbar.active {
+        display: flex; /* Show the navbar on mobile when active class is added */
+        right: 0; /* Slide in from the right */
+    }
+}
+
+/* Responsive adjustments */
+@media(max-width: 895px) {
+    .home {
+        flex-direction: column-reverse;
+        margin: 5rem 4rem;
+        gap: 3rem;
+    }
+    .home-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .home-content h3 {
+        font-size: 2.6rem;
+    }
+    .home-content h1 {
+        font-size: 8rem;
+        margin-top: 3rem;
+    }
+    .home-content p {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .home-img img {
+        width: 56vw;
+        margin: 3rem 0;
+    }
+    .about {
+        flex-direction: column-reverse;
+        padding: 10rem 9% 10rem;
+    }
+    .about .heading {
+        margin: 3rem 0;
+    }
+    .about img {
+        width: 50vw;
+    }
+    .services h2 {
+        margin-bottom: 3rem;
+    }
+    .features-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .projects-box {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .projects-box img {
+        min-width: 42rem;
+    }
+}
+
+/* About Me Section: Mobile View Optimization */
+@media (max-width: 768px) {
+    .about {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: space-between; /* Distribute content to fill the section */
+        align-items: center; /* Center align items */
+        min-height: 100vh; /* Ensure section spans the full viewport height */
+        padding: 3rem 2rem; /* Adjust padding for better spacing */
+        box-sizing: border-box; /* Include padding in height calculations */
+    }
+    .about-logo {
+        margin-bottom: 2rem; /* Space between logo and text */
+    }
+    .about-logo-img {
+        width: 80%; /* Scale the image appropriately */
+        max-width: 300px; /* Prevent it from being too large */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .about-content {
+        flex-grow: 1; /* Allow the paragraph to grow and occupy space */
+        text-align: center; /* Center-align the content */
+        padding: 0 1rem; /* Add horizontal padding */
+    }
+    .heading {
+        font-size: 3.5rem; /* Adjust heading size */
+        margin-bottom: 1rem; /* Add spacing */
+    }
+    .sub-heading {
+        font-size: 2.5rem; /* Adjust sub-heading size */
+        margin-bottom: 2rem; /* Add spacing */
+    }
+    .about-content p {
+        font-size: 1.6rem; /* Larger font for readability */
+        line-height: 1.8; /* Improve text spacing */
+        margin: 0 auto; /* Center-align text block */
+        max-width: 700px; /* Prevent overly wide text */
+        margin-bottom: 4rem;
+    }
+    .add-to-discord-button {
+        font-size: 1.5rem; /* Adjust button size */
+        padding: 1rem 2rem; /* Add comfortable padding */
+        margin-top: 2rem; /* Push button to the bottom */
+    }
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 480px) {
+    .footer-list {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .features-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .project-card {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+    .home-content h1 {
+        font-size: 5rem;
+    }
+    .home-content h3 {
+        font-size: 2rem;
+    }
+    .home-content p {
+        font-size: 1.4rem;
+    }
+    .btn {
+        font-size: 1.4rem;
+        padding: 0.8em 1.2em;
+        width: auto;
+    }
+}
+
+/* FAQ Section */
+.faq {
+    padding: 5rem 12%;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.faq h2.heading {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.faq-question {
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1rem 0;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--main-color);
+}
+
+.faq-answer {
+    display: none;
+    padding: 1rem 0;
+    font-size: 1.6rem;
+    line-height: 1.8;
+}
+
+.faq-answer p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Add an icon to indicate dropdown */
+.faq-question::after {
+    content: '\25BC'; /* Down arrow */
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(-180deg); /* Rotate arrow when active */
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+    max-height: none; /* Ensure the answer is fully visible */
+    overflow: visible; /* Ensure the answer is fully visible */
+}
